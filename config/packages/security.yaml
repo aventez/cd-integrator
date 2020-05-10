@@ -1,0 +1,24 @@
+security:
+    encoders:
+        App\Entity\Admin:
+            algorithm: auto
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\Admin
+                property: username
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: lazy
+            guard:
+                authenticators:
+                    - App\Security\AdminAuthenticator
+            logout:
+                path: integrator_logout
+                invalidate_session: true
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_ADMIN }

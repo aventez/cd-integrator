@@ -1,0 +1,52 @@
+web:
+  container_name: integrator_core
+  build: ./docker/web
+  environment:
+    PHP_DATE_TIMEZONE: Europe/Warsaw
+    PHP_MEMORY_LIMIT: 1024M
+  ports:
+    - "82:80"
+    - "8002:8000"
+  volumes:
+    - ./:/app
+    - /app/vendor/
+    - /app/var/
+    - ./docker/web/vhost.conf:/opt/docker/etc/nginx/vhost.conf
+  links:
+    - dbpercona
+    - rabbitmq
+
+dbpercona:
+  container_name: integrator_db
+  image: percona
+  restart: always
+  ports:
+    - "3310:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: passwd
+    MYSQL_DATABASE: integrator
+
+rabbitmq:
+  container_name: integrator_rabbitmq
+  image: "rabbitmq:3-management"
+  environment:
+    RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+    RABBITMQ_DEFAULT_USER: "rabbitmq"
+    RABBITMQ_DEFAULT_PASS: "rabbitmq"
+    RABBITMQ_DEFAULT_VHOST: "integrator"
+  ports:
+    - 29677:15672
+    - 29678:5672
+  labels:
+    NAME: "rabbitmq"
+
+front:
+  container_name: integrator_front
+  user: root
+  environment:
+    - NODE_ENV=dev
+  build: ./docker/front
+  volumes_from:
+    - web
+  stdin_open: true
+  tty: true

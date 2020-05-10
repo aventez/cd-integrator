@@ -1,0 +1,7 @@
+{% set n = 0 %}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        {% include 'global/_flash.html.twig' %}
+        {% set n = n + 1 %}
+    {% endfor %}
+{% endfor %}

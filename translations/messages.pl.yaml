@@ -1,0 +1,13 @@
+app:
+  title: 'Integrator'
+  sidebar:
+    dashboard: 'Dashboard'
+    main: 'Główne'
+    importProducts: 'Import produktów'
+  security:
+    logout: 'Wyloguj'
+    login:
+      title: 'Logowanie'
+      username: 'Nazwa użytkownika'
+      password: 'Hasło'
+      submit: 'Zaloguj'

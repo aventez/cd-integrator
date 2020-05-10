@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ 'app.title'|trans }}{% endblock %}</title>
+
+    {% block stylesheets %}{% endblock %}
+
+    {{ encore_entry_link_tags('app') }}
+    {% block head_javascripts %}{% endblock %}
+</head>
+<body class="c-app">
+{% include 'global/_flashes.html.twig' %}
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+    <div class="c-sidebar-brand">
+        <img class="c-sidebar-brand-full" src="{{ asset('assets/img/main_logo.png') }}" width="118" height="46" alt="CoreUI Logo">
+        <img class="c-sidebar-brand-minimized" src="{{ asset('assets/img/main_logo.png') }}" width="26" height="46" alt="CoreUI Logo">
+    </div>
+
+    {% include 'global/_sidebar_menu.html.twig' %}
+
+    <button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized"></button>
+</div>
+<div class="c-wrapper">
+    {% include 'global/_header.html.twig' %}
+    <div class="c-body">
+        <main class="c-main">
+            <div class="container-fluid">
+                {% block body %}{% endblock %}
+            </div>
+        </main>
+    </div>
+</div>
+{{ encore_entry_script_tags('app') }}
+{% block javascripts %}{% endblock %}
+</body>
+</html>
