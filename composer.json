@@ -9,6 +9,8 @@
         "enqueue/enqueue-bundle": "^0.10.1",
         "enqueue/fs": "^0.10.1",
         "guzzlehttp/guzzle": "^6.5",
+        "knplabs/knp-paginator-bundle": "^5.2",
+        "lexik/form-filter-bundle": "^6.0",
         "sensio/framework-extra-bundle": "^5.5",
         "symfony/asset": "5.0.*",
         "symfony/console": "5.0.*",

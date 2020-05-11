@@ -24,4 +24,9 @@ class ProductImportRepository extends ServiceEntityRepository
         $this->_em->persist($import);
         $this->_em->flush();
     }
+
+    public function findAllOrderByIdDesc(): ?array
+    {
+        return $this->findBy([], ['id' => 'DESC']);
+    }
 }

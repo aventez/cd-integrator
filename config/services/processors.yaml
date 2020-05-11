@@ -12,3 +12,11 @@ services:
       - '@App\Application\Envelope\Handler\ProductImportHandler'
     tags:
       - { name: enqueue.transport.processor }
+
+  app.processor.product_refresh:
+    class: App\Queue\Processor\ProductRefreshProcessor
+    arguments:
+      - '@monolog.logger'
+      - '@App\Application\Envelope\Handler\ProductRefreshHandler'
+    tags:
+      - { name: enqueue.transport.processor }

@@ -6,6 +6,8 @@
         {{ print.badge('app.importProduct.status.processing'|trans, 'bg-warning') }}
     {% elseif status == constant('App\\Application\\Enum\\ProductImportStatusEnum::COMPLETED') %}
         {{ print.badge('app.importProduct.status.completed'|trans, 'bg-success') }}
+    {% elseif status == constant('App\\Application\\Enum\\ProductImportStatusEnum::REJECTED') %}
+        {{ print.badge('app.importProduct.status.rejected'|trans, 'bg-danger') }}
     {% else %}
         {{ print.badge(status) }}
     {% endif %}

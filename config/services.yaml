@@ -22,8 +22,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: 'app.import.created', method: 'onCreated' }
 
-    App\Application\Provider\ProductImportDataProvider:
-        $endpoint: '%env(COFFEEDESK_ENDPOINT)%'
+    App\Application\Provider\ProductDataProvider: ~
+
+    App\Application\Handler\Filter\:
+        resource: '../src/Application/Handler/Filter/*'
 
     App\Application\CoffeedeskApi\ProductApiClient:
         $endpoint: '%env(COFFEEDESK_ENDPOINT)%'

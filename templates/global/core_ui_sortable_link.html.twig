@@ -1,0 +1,14 @@
+<a{% for attr, value  in options %} {{ attr }}="{{ value }}"{% endfor %} {% if sorted %}style="color: #000;"{% else %}style="color: #768192;"{% endif %}>
+{{ title }}
+<span>
+        {% if sorted %}
+            {% if direction == 'desc' %}
+                <i class="cil-sort-descending"></i>
+            {% else %}
+                <i class="cil-sort-ascending"></i>
+            {% endif %}
+        {% else %}
+            <i class="cil-sort-ascending" style="color: #768192;"></i>
+        {% endif %}
+    </span>
+</a>

@@ -2,6 +2,7 @@
 
 namespace App\Application\CoffeedeskApi;
 
+use App\Application\Model\Dto\CoffeeDeskProductDto;
 use GuzzleHttp\Client;
 
 class ProductApiClient extends Client
@@ -12,7 +13,11 @@ class ProductApiClient extends Client
     {
         parent::__construct([
             'base_uri' => $endpoint,
-            'timeout' => 30
+            'timeout' => 30,
+            'http_errors' => false,
+            'headers' => [
+                'apikey' => $apiKey
+            ]
         ]);
 
         $this->apiKey = $apiKey;
@@ -20,6 +25,16 @@ class ProductApiClient extends Client
 
     public function getProductInfo(int $id)
     {
-        
+        $response = $this->get(sprintf('products/%d', $id));
+
+        if($response->getStatusCode() !== 200) {
+            throw new ProductNotFoundException(sprintf('Product with id %d was not found.', $id));
+        }
+
+        $response = json_decode($response->getBody()->getContents(), true);
+
+        if(isset($response['id'])) return CoffeeDeskProductDto::constructFromData($response);
+
+        return NULL;
     }
 }

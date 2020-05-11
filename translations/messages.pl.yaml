@@ -4,6 +4,7 @@ app:
     dashboard: 'Dashboard'
     main: 'Główne'
     importProduct: 'Import produktów'
+    products: 'Produkty'
   security:
     logout: 'Wyloguj'
     login:
@@ -16,12 +17,13 @@ app:
       new: 'Nowy'
       processing: 'Przetwarzanie'
       completed: 'Zakończony'
+      rejected: 'Odrzucono'
     index:
       button:
         addImport: 'Dodaj nowy import'
       table:
-        thId: 'Id'
-        thOriginalId: 'CoffeeDesk ID'
+        thId: 'ID'
+        thOriginalId: 'ID CoffeeDesk'
         thStatus: 'Status'
     create:
       title: 'Tworzenie nowego importu'
@@ -30,3 +32,25 @@ app:
         submit: 'Wyślij'
       flash:
         success: 'Import został dodany pomyślnie. Oczekuje aktualnie na zrealizowanie.'
+  product:
+    index:
+      table:
+        thId: 'ID'
+        thCdId: 'ID CoffeeDesk'
+        thName: 'Nazwa'
+        thImage: 'Zdjęcia'
+        thLastUpdate: 'Ostatnia aktualizacja'
+        viewImage: 'Podgląd'
+        noImage: 'Brak zdjęcia'
+        noRefreshed: 'Brak danych'
+    filter:
+      id:
+        label: 'Identyfikator CoffeeDesk'
+      submit:
+        label: 'Wyślij'
+    refresh:
+      flash:
+        success: 'Produkty zostały pomyślnie przekazane do odświeżenia.'
+  pagination:
+    itemsCount: 'Liczba w systemie: %count%'
+  filters: 'Filtry'

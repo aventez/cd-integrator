@@ -69,7 +69,17 @@ class ProductImportController extends AbstractController
     public function index(Request $request): Response
     {
         return $this->render('page/product_import/index.html.twig', [
-            'products_imports' => $this->repository->findAll()
+            'products_imports' => $this->repository->findAllOrderByIdDesc()
         ]);
+    }
+
+    /**
+     * @Route("/refresh-products", name="integrator_products_import_refresh")
+     */
+    public function refresh(Request $request): Response
+    {
+        /*
+         * Iteracja przez wszystkie produkty, wrzucenie do kolejki products_to_refresh
+         */
     }
 }

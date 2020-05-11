@@ -1,0 +1,6 @@
+{% macro render(pagination, options) %}
+    <div class="d-flex flex-row {% if options.showItemsCount is defined %}justify-content-between{% else %}justify-content-end{% endif %}">
+        {% if options.showItemsCount is defined %}<div class="mb-3 card pagination-item">{{ 'app.pagination.itemsCount'|trans({'%count%': pagination.getTotalItemCount}) }}</div>{% endif %}
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endmacro %}

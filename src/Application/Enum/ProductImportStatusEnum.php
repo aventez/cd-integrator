@@ -7,4 +7,5 @@ class ProductImportStatusEnum
     public const NEW = 'new';
     public const PROCESSING = 'processing';
     public const COMPLETED = 'completed';
+    public const REJECTED = 'rejected';
 }

@@ -1,0 +1,50 @@
+{% extends 'layout/default.html.twig' %}
+{% import 'macro/pagination.html.twig' as macroPagination %}
+
+{% block body %}
+
+    <div class="card">
+        <div class="card-header"><strong>{{ 'app.filters'|trans }}</strong></div>
+        <div class="card-body">
+            {{ form(form) }}
+        </div>
+    </div>
+
+    {{ macroPagination.render(pagination, {showItemsCount: true}) }}
+    <table class="table table-responsive-sm table-hover table-outline mb-0 table-white-bg">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">{{ 'app.product.index.table.thId'|trans }}</th>
+            <th scope="col">{{ 'app.product.index.table.thCdId'|trans }}</th>
+            <th scope="col">{{ 'app.product.index.table.thName'|trans }}</th>
+            <th scope="col">{{ 'app.product.index.table.thImage'|trans }}</th>
+            <th scope="col">{{ 'app.product.index.table.thLastUpdate'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for product in pagination %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.coffeeDeskid }}</td>
+                <td>{{ product.name }}</td>
+                <td>
+                    {% if product.images[0] is defined %}
+                        <a href="{{ product.images[0] }}" target="_blank">
+                            {{ 'app.product.index.table.viewImage'|trans }}
+                        </a>
+                    {% else %}
+                        {{ 'app.product.index.table.noImage'|trans }}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if product.lastRefresh %}
+                        {{ product.lastRefresh|date }}
+                    {% else %}
+                        {{ 'app.product.index.table.noRefreshed'|trans }}
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
