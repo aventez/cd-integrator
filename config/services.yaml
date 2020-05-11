@@ -1,3 +1,6 @@
+imports:
+    - { resource: 'services/processors.yaml' }
+
 parameters:
 
 services:
@@ -12,3 +15,16 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\EventListener\ProductImportEventListener:
+        arguments:
+            $context: '@enqueue.transport.default.context'
+        tags:
+            - { name: kernel.event_listener, event: 'app.import.created', method: 'onCreated' }
+
+    App\Application\Provider\ProductImportDataProvider:
+        $endpoint: '%env(COFFEEDESK_ENDPOINT)%'
+
+    App\Application\CoffeedeskApi\ProductApiClient:
+        $endpoint: '%env(COFFEEDESK_ENDPOINT)%'
+        $apiKey: '%env(COFFEEDESK_API_KEY)%'

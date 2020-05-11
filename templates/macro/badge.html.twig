@@ -1,0 +1,3 @@
+{% macro badge(text, color_class) %}
+    <span class="badge {{ color_class|default('bg-secondary') }}">{{ text }}</span>
+{% endmacro %}

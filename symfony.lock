@@ -90,6 +90,58 @@
     "egulias/email-validator": {
         "version": "2.1.14"
     },
+    "enqueue/amqp-ext": {
+        "version": "0.7",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.7",
+            "ref": "6b6182674f551225f4f9997f5efb7cdc71822e05"
+        }
+    },
+    "enqueue/amqp-tools": {
+        "version": "0.10.0"
+    },
+    "enqueue/dsn": {
+        "version": "0.10.1"
+    },
+    "enqueue/enqueue": {
+        "version": "0.10.1"
+    },
+    "enqueue/enqueue-bundle": {
+        "version": "0.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.9",
+            "ref": "c6ec89b63f963d10ad0d7a7bea170359c119c8bc"
+        },
+        "files": [
+            "config/packages/enqueue.yaml",
+            "config/packages/test/enqueue.yaml"
+        ]
+    },
+    "enqueue/fs": {
+        "version": "0.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.4",
+            "ref": "4d45d1e6b113832ad13f6d321506c004ed12fe2e"
+        }
+    },
+    "enqueue/null": {
+        "version": "0.10.1"
+    },
+    "guzzlehttp/guzzle": {
+        "version": "6.5.3"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.6.1"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
@@ -101,6 +153,9 @@
     },
     "laminas/laminas-zendframework-bridge": {
         "version": "1.0.1"
+    },
+    "makasim/temp-file": {
+        "version": "0.2.0"
     },
     "monolog/monolog": {
         "version": "2.0.2"
@@ -135,11 +190,26 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/link": {
         "version": "1.0.0"
     },
     "psr/log": {
         "version": "1.1.2"
+    },
+    "queue-interop/amqp-interop": {
+        "version": "0.8.1"
+    },
+    "queue-interop/queue-interop": {
+        "version": "0.8.0"
+    },
+    "ralouphie/getallheaders": {
+        "version": "3.0.3"
+    },
+    "ramsey/uuid": {
+        "version": "3.9.3"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",

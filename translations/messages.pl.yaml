@@ -3,7 +3,7 @@ app:
   sidebar:
     dashboard: 'Dashboard'
     main: 'Główne'
-    importProducts: 'Import produktów'
+    importProduct: 'Import produktów'
   security:
     logout: 'Wyloguj'
     login:
@@ -11,3 +11,22 @@ app:
       username: 'Nazwa użytkownika'
       password: 'Hasło'
       submit: 'Zaloguj'
+  importProduct:
+    status:
+      new: 'Nowy'
+      processing: 'Przetwarzanie'
+      completed: 'Zakończony'
+    index:
+      button:
+        addImport: 'Dodaj nowy import'
+      table:
+        thId: 'Id'
+        thOriginalId: 'CoffeeDesk ID'
+        thStatus: 'Status'
+    create:
+      title: 'Tworzenie nowego importu'
+      form:
+        originalId: 'ID z CoffeeDesk'
+        submit: 'Wyślij'
+      flash:
+        success: 'Import został dodany pomyślnie. Oczekuje aktualnie na zrealizowanie.'

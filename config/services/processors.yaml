@@ -1,0 +1,14 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+
+  App\Application\Envelope\Handler\ProductImportHandler: ~
+
+  app.processor.product_import:
+    class: App\Queue\Processor\ProductImportProcessor
+    arguments:
+      - '@monolog.logger'
+      - '@App\Application\Envelope\Handler\ProductImportHandler'
+    tags:
+      - { name: enqueue.transport.processor }

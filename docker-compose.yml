@@ -8,7 +8,7 @@ web:
     - "82:80"
     - "8002:8000"
   volumes:
-    - ./:/app
+    - .:/app
     - /app/vendor/
     - /app/var/
     - ./docker/web/vhost.conf:/opt/docker/etc/nginx/vhost.conf

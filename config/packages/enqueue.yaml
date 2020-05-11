@@ -1,0 +1,6 @@
+enqueue:
+    default:
+        transport: '%env(ENQUEUE_DSN)%'
+        client: ~
+        extensions:
+            doctrine_clear_identity_map_extension: true
