@@ -13,11 +13,19 @@ app:
       password: 'Hasło'
       submit: 'Zaloguj'
   importProduct:
+    filter:
+      originalId:
+        label: 'ID CoffeeDesk'
+      status:
+        label: 'Status'
+        placeholder: 'Wybierz opcje'
+      submit:
+        label: 'Filtruj'
     status:
       new: 'Nowy'
       processing: 'Przetwarzanie'
       completed: 'Zakończony'
-      rejected: 'Odrzucono'
+      rejected: 'Niepowodzenie'
     index:
       button:
         addImport: 'Dodaj nowy import'
@@ -25,6 +33,8 @@ app:
         thId: 'ID'
         thOriginalId: 'ID CoffeeDesk'
         thStatus: 'Status'
+        thActions: 'Akcje'
+        delete: 'Usuń'
     create:
       title: 'Tworzenie nowego importu'
       form:
@@ -32,6 +42,9 @@ app:
         submit: 'Wyślij'
       flash:
         success: 'Import został dodany pomyślnie. Oczekuje aktualnie na zrealizowanie.'
+    delete:
+      flash:
+        success: 'Import %id% został pomyślnie usunięty.'
   product:
     index:
       table:
@@ -43,6 +56,8 @@ app:
         viewImage: 'Podgląd'
         noImage: 'Brak zdjęcia'
         noRefreshed: 'Brak danych'
+        edit: 'Edytuj'
+        thActions: 'Akcje'
     filter:
       id:
         label: 'Identyfikator CoffeeDesk'
@@ -51,6 +66,18 @@ app:
     refresh:
       flash:
         success: 'Produkty zostały pomyślnie przekazane do odświeżenia.'
+    update:
+      flash:
+        success: 'Produkt został pomyślnie edytowany.'
+      title: 'Edycja produktu'
+      price:
+        label: 'Cena'
+      buffer:
+        label: 'Bufor bezpieczeństwa (np. -2)'
+      syncDisabled:
+        label: 'Wyłączenie synchronizacji z CoffeeDesk'
+      submit:
+        label: 'Edytuj'
   pagination:
     itemsCount: 'Liczba w systemie: %count%'
   filters: 'Filtry'

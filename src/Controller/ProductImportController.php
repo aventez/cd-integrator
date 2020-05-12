@@ -3,10 +3,13 @@
 namespace App\Controller;
 
 use App\Application\Enum\ProductImportStatusEnum;
+use App\Application\Handler\Filter\ProductImportFilterHandler;
 use App\Entity\ProductImport;
 use App\Event\ImportAddedEvent;
+use App\Form\ProductImportFilterType;
 use App\Form\ProductImportType;
 use App\Repository\ProductImportRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -17,6 +20,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class ProductImportController extends AbstractController
 {
+    private const PER_PAGE_LIMIT = 10;
+
     private $translator;
     private $repository;
     private $dispatcher;
@@ -66,20 +71,54 @@ class ProductImportController extends AbstractController
     /**
      * @Route("/import", name="integrator_products_import_index")
      */
-    public function index(Request $request): Response
+    public function index(Request $request, PaginatorInterface $paginator, ProductImportFilterHandler $productImportFilterHandler): Response
     {
-        return $this->render('page/product_import/index.html.twig', [
-            'products_imports' => $this->repository->findAllOrderByIdDesc()
+        //$products = $this->repository->findAllOrderByIdDesc();
+
+        $form = $this->createForm(ProductImportFilterType::class, null, [
+            'method' => 'GET'
         ]);
+
+        $form->handleRequest($request);
+
+        $imports = $productImportFilterHandler->handle($form);
+
+        $pagination = $paginator->paginate(
+            $imports,
+            $request->query->get('page', 1),
+            self::PER_PAGE_LIMIT
+        );
+
+        return $this->render('page/product_import/index.html.twig', [
+            'pagination' => $pagination,
+            'form' => $form->createView()
+        ]);
+
+        /*
+        $pagination = $paginator->paginate(
+            $productFilterHandler->handle($form),
+            $request->query->get('page', 1),
+            self::PER_PAGE_LIMIT
+        );
+         */
     }
 
     /**
-     * @Route("/refresh-products", name="integrator_products_import_refresh")
+     * @Route("/import/delete/{id}", name="integrator_products_import_delete")
      */
-    public function refresh(Request $request): Response
+    public function delete(Request $request): Response
     {
-        /*
-         * Iteracja przez wszystkie produkty, wrzucenie do kolejki products_to_refresh
-         */
+        if( $productImport = $this->repository->find($request->get('id')) )
+        {
+            $this->getDoctrine()->getManager()->remove($productImport);
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash(
+                'success',
+                $this->translator->trans('app.importProduct.delete.flash.success', ['%id%' => $productImport->getId()])
+            );
+        }
+
+        return $this->redirectToRoute('integrator_products_import_index');
     }
 }

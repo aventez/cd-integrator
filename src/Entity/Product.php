@@ -66,6 +66,16 @@ class Product
      */
     private $stock;
 
+    /**
+     * @ORM\Column(type="integer", options={"default": 0})
+     */
+    private $buffer = 0;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default": false})
+     */
+    private $syncDisabled = false;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -187,6 +197,30 @@ class Product
     public function setStock(int $stock): self
     {
         $this->stock = $stock;
+
+        return $this;
+    }
+
+    public function getBuffer(): ?int
+    {
+        return $this->buffer;
+    }
+
+    public function setBuffer(int $buffer): self
+    {
+        $this->buffer = $buffer;
+
+        return $this;
+    }
+
+    public function getSyncDisabled(): ?bool
+    {
+        return $this->syncDisabled;
+    }
+
+    public function setSyncDisabled(bool $syncDisabled): self
+    {
+        $this->syncDisabled = $syncDisabled;
 
         return $this;
     }

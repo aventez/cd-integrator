@@ -1,33 +1,44 @@
 {% extends 'layout/default.html.twig' %}
 {% import 'macro/status.html.twig' as status %}
+{% import 'macro/pagination.html.twig' as macroPagination %}
 
 {% block body %}
     <div class="row justify-content-between mb-2">
         <div class="col-4">
-        </div>
-        <div class="col-auto">
             <a href="{{ path('integrator_products_import_create') }}" class="btn btn-success">{{ 'app.importProduct.index.button.addImport'|trans }}</a>
         </div>
     </div>
 
-    {% if products_imports is not empty %}
-        <table class="table table-responsive-sm table-hover table-outline mb-0 table-white-bg">
-            <thead class="thead-light">
+    <div class="card">
+        <div class="card-header"><strong>{{ 'app.filters'|trans }}</strong> </div>
+        <div class="card-body">
+            {{ form(form) }}
+        </div>
+    </div>
+
+    {{ macroPagination.render(pagination, {showItemsCount: true}) }}
+    <table class="table table-responsive-sm table-hover table-outline mb-0 table-white-bg">
+        <thead class="thead-light">
+        <tr>
+            <th scope="col">{{ 'app.importProduct.index.table.thId'|trans }}</th>
+            <th scope="col">{{ 'app.importProduct.index.table.thOriginalId'|trans }}</th>
+            <th scope="col">{{ 'app.importProduct.index.table.thStatus'|trans }}</th>
+            <th scope="col">{{ 'app.importProduct.index.table.thActions'|trans }}</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for import in pagination %}
             <tr>
-                <th scope="col">{{ 'app.importProduct.index.table.thId'|trans }}</th>
-                <th scope="col">{{ 'app.importProduct.index.table.thOriginalId'|trans }}</th>
-                <th scope="col">{{ 'app.importProduct.index.table.thStatus'|trans }}</th>
+                <td>{{ import.id }}</td>
+                <td>{{ import.originalId }}</td>
+                <td>{{ status.productImport(import.status) }}</td>
+                <td>
+                    <a href="{{ path('integrator_products_import_delete', {id: import.id}) }}">
+                        {{ 'app.importProduct.index.table.delete'|trans }}
+                    </a>
+                </td>
             </tr>
-            </thead>
-            <tbody>
-            {% for import in products_imports %}
-                <tr>
-                    <td>{{ import.id }}</td>
-                    <td>{{ import.originalId }}</td>
-                    <td>{{ status.productImport(import.status) }}</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
