@@ -1,0 +1,17 @@
+{% extends 'layout/default.html.twig' %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-header">
+            <div class="row justify-content-between">
+                <div class="col-4">
+                    <i class="cib-addthis"></i>
+                    {{ 'app.offer.create.title'|trans }}
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

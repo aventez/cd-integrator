@@ -57,6 +57,7 @@ class ProductImportHandler implements EnvelopeHandlerInterface
             return self::REJECT;
         }
 
+        // Wyrzucić do factory
         $product = new Product();
         $product->setName($data->getName());
         $product->setDescription($data->getDescription());

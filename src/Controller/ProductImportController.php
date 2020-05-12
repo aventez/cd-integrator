@@ -73,8 +73,6 @@ class ProductImportController extends AbstractController
      */
     public function index(Request $request, PaginatorInterface $paginator, ProductImportFilterHandler $productImportFilterHandler): Response
     {
-        //$products = $this->repository->findAllOrderByIdDesc();
-
         $form = $this->createForm(ProductImportFilterType::class, null, [
             'method' => 'GET'
         ]);
@@ -93,14 +91,6 @@ class ProductImportController extends AbstractController
             'pagination' => $pagination,
             'form' => $form->createView()
         ]);
-
-        /*
-        $pagination = $paginator->paginate(
-            $productFilterHandler->handle($form),
-            $request->query->get('page', 1),
-            self::PER_PAGE_LIMIT
-        );
-         */
     }
 
     /**

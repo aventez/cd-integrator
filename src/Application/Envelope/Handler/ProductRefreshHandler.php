@@ -44,6 +44,7 @@ class ProductRefreshHandler implements EnvelopeHandlerInterface
 
         $data = $this->dataProvider->provide($product->getCoffeeDeskId());
 
+        // Wyrzucić do factory
         $product->setImages($data->getImages());
         $product->setEan13($data->getEan13());
         $product->setWeight($data->getWeight());

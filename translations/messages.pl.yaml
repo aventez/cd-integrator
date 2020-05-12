@@ -5,6 +5,7 @@ app:
     main: 'Główne'
     importProduct: 'Import produktów'
     products: 'Produkty'
+    offer: 'Oferty'
   security:
     logout: 'Wyloguj'
     login:
@@ -81,3 +82,11 @@ app:
   pagination:
     itemsCount: 'Liczba w systemie: %count%'
   filters: 'Filtry'
+  offer:
+    index:
+      table:
+        thId: 'ID'
+        thName: 'Nazwa'
+        thStatus: 'Status'
+    create:
+      title: 'Tworzenie nowej oferty'
