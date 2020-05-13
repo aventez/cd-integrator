@@ -7,6 +7,7 @@ use App\Application\Envelope\EnvelopeInterface;
 use App\Application\Envelope\ProductImportProcessEnvelope;
 use App\Application\Provider\ProductDataProvider;
 use App\Entity\Product;
+use App\Factory\ProductFactory;
 use App\Repository\ProductImportRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,6 +20,7 @@ class ProductImportHandler implements EnvelopeHandlerInterface
     private $logger;
     private $dataProvider;
     private $em;
+    private $productFactory;
 
     public function __construct
     (
@@ -26,7 +28,8 @@ class ProductImportHandler implements EnvelopeHandlerInterface
         ProductRepository $productRepository,
         LoggerInterface $logger,
         ProductDataProvider $dataProvider,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
+        ProductFactory $productFactory
     )
     {
         $this->importRepository = $importRepository;
@@ -34,6 +37,7 @@ class ProductImportHandler implements EnvelopeHandlerInterface
         $this->dataProvider = $dataProvider;
         $this->productRepository = $productRepository;
         $this->em = $em;
+        $this->productFactory = $productFactory;
     }
 
     public function handle(EnvelopeInterface $envelope): string
@@ -57,17 +61,7 @@ class ProductImportHandler implements EnvelopeHandlerInterface
             return self::REJECT;
         }
 
-        // Wyrzucić do factory
-        $product = new Product();
-        $product->setName($data->getName());
-        $product->setDescription($data->getDescription());
-        $product->setCoffeeDeskId($data->getId());
-        $product->setEan13($data->getEan13());
-        $product->setPrice($data->getPrice());
-        $product->setWeight($data->getWeight());
-        $product->setImages($data->getImages());
-        $product->setStock($data->getStock());
-        $this->productRepository->save($product);
+        $this->productFactory->createFromProductDto($data);
 
         $import->setStatus(ProductImportStatusEnum::COMPLETED);
         $this->importRepository->save($import);

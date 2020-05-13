@@ -15,13 +15,20 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('integrator_dashboard');
+            return $this->redirectToRoute('easyadmin');
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('@EasyAdmin/page/login.html.twig', [
+            'last_username' => $lastUsername,
+            'error' => $error,
+            'csrf_token_intention' => 'authenticate',
+            'target_path' => $this->generateUrl('easyadmin'),
+            'username_parameter' => 'username',
+            'password_parameter' => 'password'
+        ]);
     }
 
     /**

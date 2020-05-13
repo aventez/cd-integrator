@@ -5,9 +5,11 @@
         "php": "^7.2.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "easycorp/easyadmin-bundle": "^2.3",
         "enqueue/amqp-ext": "^0.10.1",
         "enqueue/enqueue-bundle": "^0.10.1",
         "enqueue/fs": "^0.10.1",
+        "friendsofsymfony/ckeditor-bundle": "^2.2",
         "guzzlehttp/guzzle": "^6.5",
         "knplabs/knp-paginator-bundle": "^5.2",
         "lexik/form-filter-bundle": "^6.0",
@@ -33,7 +35,6 @@
         "symfony/twig-pack": "*",
         "symfony/validator": "5.0.*",
         "symfony/web-link": "5.0.*",
-        "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {

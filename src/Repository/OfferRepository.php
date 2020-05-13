@@ -18,4 +18,10 @@ class OfferRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Offer::class);
     }
+
+    public function delete(Offer $offer): void
+    {
+        $this->_em->remove($offer);
+        $this->_em->flush();
+    }
 }

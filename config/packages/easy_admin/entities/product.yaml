@@ -1,0 +1,33 @@
+easy_admin:
+  entities:
+    Product:
+      label: app.product.label
+      help: app.product.help
+
+      class: App\Entity\Product
+      controller: App\Controller\ProductController
+
+      disabled_actions: ['new']
+
+      list:
+        batch_actions: ['delete']
+
+        fields:
+          - { property: id, label: app.product.list.fields.id }
+          - { property: coffeeDeskId, label: app.product.list.fields.coffeeDeskId }
+          - { property: name, label: app.product.list.fields.name }
+          - { property: price, format: '%.2f PLN', label: app.product.list.fields.price }
+          - { property: lastRefresh, label: app.product.list.fields.lastRefresh }
+          - { property: syncDisabled, label: app.product.list.fields.syncDisabled }
+
+      form:
+        fields:
+          - { property: id, label: app.product.form.fields.id.label, type_options: { disabled: true } }
+          - { property: coffeeDeskId, label: app.product.form.fields.coffeeDeskId.label, type_options: { disabled: true } }
+          - { property: name, label: app.product.form.fields.name.label }
+          - { property: description, label: app.product.form.fields.description.label }
+          - { property: price, label: app.product.form.fields.price.label, type: 'money', help: app.product.form.fields.price.help, type_options: { disabled: true, currency: 'PLN' } }
+          - { property: images, label: app.product.form.fields.images.label }
+          - { property: buffer, label: app.product.form.fields.buffer.label, help: app.product.form.fields.buffer.help }
+          - { property: syncDisabled, label: app.product.form.fields.syncDisabled.label, help: app.product.form.fields.syncDisabled.help }
+          - offers

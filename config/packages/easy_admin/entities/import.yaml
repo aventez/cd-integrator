@@ -1,0 +1,23 @@
+easy_admin:
+  entities:
+    Import:
+      label: app.import.label
+      help: app.import.help
+
+      class: App\Entity\ProductImport
+      controller: App\Controller\ProductImportController
+
+      disabled_actions: ['edit']
+
+      list:
+        fields:
+          - { property: id, label: app.import.list.fields.id }
+          - { property: originalId, label: app.import.list.fields.originalId }
+          - { property: status, label: app.import.list.fields.status, template: 'page/product_import/status.html.twig' }
+
+        filters:
+          - { property: status, label: app.import.list.filters.status, type: App\Form\Filter\Type\ImportStatusFilterType }
+
+      form:
+        fields:
+          - { property: originalId, label: app.import.form.fields.originalId.label, help: app.import.form.fields.originalId.help }

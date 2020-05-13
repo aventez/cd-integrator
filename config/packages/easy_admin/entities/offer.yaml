@@ -1,0 +1,24 @@
+easy_admin:
+  entities:
+    Offer:
+      label: app.offer.label
+      help: app.offer.help
+
+      class: App\Entity\Offer
+
+      list:
+        batch_actions: ['delete']
+
+        fields:
+          - { property: id, label: app.offer.list.fields.id }
+          - { property: name, label: app.offer.list.fields.name }
+
+      form:
+        fields:
+          - { property: id, label: app.offer.form.fields.id.label, type_options: { disabled: true } }
+          - { property: name, label: app.offer.form.fields.name.label }
+          - { property: products, label: app.offer.form.fields.products.label, help: app.offer.form.fields.products.help, type: 'easyadmin_autocomplete', type_options: { required: true } }
+          - { property: price, label: app.offer.form.fields.price.label }
+          - { property: description, label: app.offer.form.fields.description.label }
+          - { property: shortDescription, label: app.offer.form.fields.shortDescription.label }
+          #- { property: relatedOffers, label: app.offer.form.fields.relatedOffers.label, help: app.offer.form.fields.relatedOffers.help, type: 'easyadmin_autocomplete' }

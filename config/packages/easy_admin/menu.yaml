@@ -1,0 +1,7 @@
+easy_admin:
+  design:
+    menu:
+      - { label: app.sidebar.main }
+      - { entity: Import, label: app.sidebar.import, icon: file-upload }
+      - { entity: Product, label: app.sidebar.product, icon: shopping-basket }
+      - { entity: Offer, label: app.sidebar.offer, icon: layer-group }

@@ -1,0 +1,12 @@
+{% import 'macro/badge.html.twig' as print %}
+{% if value == constant('App\\Application\\Enum\\ProductImportStatusEnum::NEW') %}
+    {{ print.badge('app.import.status.new'|trans, 'bg-primary') }}
+{% elseif value == constant('App\\Application\\Enum\\ProductImportStatusEnum::PROCESSING') %}
+    {{ print.badge('app.import.status.processing'|trans, 'bg-warning') }}
+{% elseif value == constant('App\\Application\\Enum\\ProductImportStatusEnum::COMPLETED') %}
+    {{ print.badge('app.import.status.completed'|trans, 'bg-success') }}
+{% elseif value == constant('App\\Application\\Enum\\ProductImportStatusEnum::REJECTED') %}
+    {{ print.badge('app.import.status.rejected'|trans, 'bg-danger') }}
+{% else %}
+    {{ print.badge(status) }}
+{% endif %}

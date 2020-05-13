@@ -10,8 +10,6 @@ class CoffeeDeskProductDto
     private $images;
     private $stock;
     private $price;
-    private $ean13;
-    private $weight;
 
     public function __construct
     (
@@ -20,9 +18,7 @@ class CoffeeDeskProductDto
         string $description,
         ?array $images,
         ?int $stock,
-        float $price,
-        ?string $ean13,
-        ?float $weight
+        float $price
     )
     {
         $this->id = $id;
@@ -31,8 +27,6 @@ class CoffeeDeskProductDto
         $this->images = $images;
         $this->stock = $stock;
         $this->price = $price;
-        $this->ean13 = $ean13;
-        $this->weight = $weight;
     }
 
     public function getId(): int
@@ -65,16 +59,6 @@ class CoffeeDeskProductDto
         return $this->price;
     }
 
-    public function getEan13(): ?string
-    {
-        return $this->ean13;
-    }
-
-    public function getWeight(): ?float
-    {
-        return $this->weight;
-    }
-
     public static function constructFromData(array $record): ?self
     {
         return new self(
@@ -83,9 +67,7 @@ class CoffeeDeskProductDto
             $record['description'],
             $record['images'],
             $record['availableStock'],
-            $record['pricePromotionalGross'] ? $record['pricePromotionalGross'] : $record['priceRegularGross'],
-            $record['ean13'],
-            $record['weight']
+            $record['pricePromotionalGross'] ? $record['pricePromotionalGross'] : $record['priceRegularGross']
         );
     }
 }

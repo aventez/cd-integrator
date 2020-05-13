@@ -24,9 +24,9 @@ class ProductImport
     private $originalId;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", options={"default": "new"})
      */
-    private $status;
+    private $status = 'new';
 
     public function getId(): ?int
     {

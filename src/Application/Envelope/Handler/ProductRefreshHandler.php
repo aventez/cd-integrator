@@ -8,6 +8,7 @@ use App\Application\Envelope\ProductImportProcessEnvelope;
 use App\Application\Envelope\ProductRefreshProcessEnvelope;
 use App\Application\Provider\ProductDataProvider;
 use App\Entity\Product;
+use App\Factory\ProductFactory;
 use App\Repository\ProductImportRepository;
 use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,19 +20,22 @@ class ProductRefreshHandler implements EnvelopeHandlerInterface
     private $logger;
     private $dataProvider;
     private $em;
+    private $productFactory;
 
     public function __construct
     (
         ProductRepository $productRepository,
         LoggerInterface $logger,
         ProductDataProvider $dataProvider,
-        EntityManagerInterface $em
+        EntityManagerInterface $em,
+        ProductFactory $productFactory
     )
     {
         $this->logger = $logger;
         $this->dataProvider = $dataProvider;
         $this->productRepository = $productRepository;
         $this->em = $em;
+        $this->productFactory = $productFactory;
     }
 
     public function handle(EnvelopeInterface $envelope): string
@@ -43,18 +47,14 @@ class ProductRefreshHandler implements EnvelopeHandlerInterface
         }
 
         $data = $this->dataProvider->provide($product->getCoffeeDeskId());
+        if( !$data ) {
+            $this->logger->error(sprintf('Product with cd-id %d was not found in CoffeeDesk. Deleting product.', $product->getCoffeeDeskId()));
+            $this->productRepository->delete($product);
 
-        // Wyrzucić do factory
-        $product->setImages($data->getImages());
-        $product->setEan13($data->getEan13());
-        $product->setWeight($data->getWeight());
-        $product->setLastRefresh(new \DateTimeImmutable());
-        $product->setDescription($data->getDescription());
-        $product->setName($data->getName());
-        $product->setStock($data->getStock());
+            return self::REJECT;
+        }
 
-        $this->productRepository->save($product);
-
+        $this->productFactory->updateProductFromDto($product, $data);
         $this->logger->info(sprintf('Product with ID %d has been synchronized with CoffeeDesk state.', $product->getId()));
 
         return self::ACK;

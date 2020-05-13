@@ -19,19 +19,14 @@ class Offer
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type;
-
-    /**
      * @ORM\Column(type="float")
      */
     private $price;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
 
     /**
      * @ORM\Column(type="text")
@@ -39,34 +34,14 @@ class Offer
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $shortDescription;
 
     /**
-     * @ORM\Column(type="array")
-     */
-    private $categories = [];
-
-    /**
-     * @ORM\Column(type="array")
-     */
-    private $images = [];
-
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $weight;
-
-    /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="offer")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Product", inversedBy="offers")
      */
     private $products;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $status;
 
     public function __construct()
     {
@@ -78,30 +53,6 @@ class Offer
         return $this->id;
     }
 
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     public function getPrice(): ?float
     {
         return $this->price;
@@ -110,6 +61,18 @@ class Offer
     public function setPrice(float $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }
@@ -138,40 +101,12 @@ class Offer
         return $this;
     }
 
-    public function getCategories(): ?array
+    public function __toString()
     {
-        return $this->categories;
-    }
-
-    public function setCategories(array $categories): self
-    {
-        $this->categories = $categories;
-
-        return $this;
-    }
-
-    public function getImages(): ?array
-    {
-        return $this->images;
-    }
-
-    public function setImages(array $images): self
-    {
-        $this->images = $images;
-
-        return $this;
-    }
-
-    public function getWeight(): ?float
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(float $weight): self
-    {
-        $this->weight = $weight;
-
-        return $this;
+        return sprintf('%s (ID: %d)',
+            $this->name,
+            $this->id
+        );
     }
 
     /**
@@ -196,18 +131,6 @@ class Offer
         if ($this->products->contains($product)) {
             $this->products->removeElement($product);
         }
-
-        return $this;
-    }
-
-    public function getStatus(): ?string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(string $status): self
-    {
-        $this->status = $status;
 
         return $this;
     }

@@ -2,18 +2,18 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use EasyCorp\Bundle\EasyAdminBundle\Controller\EasyAdminController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class MainController extends AbstractController
+class MainController extends EasyAdminController
 {
     /**
-     * @Route("/", name="integrator_dashboard")
+     * @Route("/", name="easyadmin")
      */
-    public function mainAction(Request $request): Response
+    public function indexAction(Request $request): Response
     {
-        return $this->render('page/dashboard/index.html.twig');
+        return parent::indexAction($request);
     }
 }

@@ -2,10 +2,15 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @UniqueEntity("coffeeDeskId")
  */
 class Product
 {
@@ -30,16 +35,6 @@ class Product
      * @ORM\Column(type="array")
      */
     private $images = [];
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $ean13;
-
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $weight;
 
     /**
      * @ORM\Column(type="integer")
@@ -75,6 +70,17 @@ class Product
      * @ORM\Column(type="boolean", options={"default": false})
      */
     private $syncDisabled = false;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Offer", mappedBy="products", cascade={"remove"})
+     * @JoinColumn(onDelete="cascade")
+     */
+    private $offers;
+
+    public function __construct()
+    {
+        $this->offers = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -113,30 +119,6 @@ class Product
     public function setImages(array $images): self
     {
         $this->images = $images;
-
-        return $this;
-    }
-
-    public function getEan13(): ?string
-    {
-        return $this->ean13;
-    }
-
-    public function setEan13(?string $ean13): self
-    {
-        $this->ean13 = $ean13;
-
-        return $this;
-    }
-
-    public function getWeight(): ?int
-    {
-        return $this->weight;
-    }
-
-    public function setWeight(int $weight): self
-    {
-        $this->weight = $weight;
 
         return $this;
     }
@@ -221,6 +203,39 @@ class Product
     public function setSyncDisabled(bool $syncDisabled): self
     {
         $this->syncDisabled = $syncDisabled;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return Collection|Offer[]
+     */
+    public function getOffers(): Collection
+    {
+        return $this->offers;
+    }
+
+    public function addOffer(Offer $offer): self
+    {
+        if (!$this->offers->contains($offer)) {
+            $this->offers[] = $offer;
+            $offer->addProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOffer(Offer $offer): self
+    {
+        if ($this->offers->contains($offer)) {
+            $this->offers->removeElement($offer);
+            $offer->removeProduct($this);
+        }
 
         return $this;
     }

@@ -1,0 +1,4 @@
+easy_admin:
+  user:
+    display_name: true
+    name_property_path: username
