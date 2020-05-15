@@ -24,9 +24,8 @@ class ProductController extends MainController
         $products = $this->repository->findAll();
         foreach($products as $product) {
             if($product->getSyncDisabled() != true) {
-                throw new \Exception($product->getOffers());
-                //$message = $this->context->createMessage(serialize(new ProductRefreshProcessEnvelope($product->getId())));
-                //$this->context->createProducer()->send($queue, $message);
+                $message = $this->context->createMessage(serialize(new ProductRefreshProcessEnvelope($product->getId())));
+                $this->context->createProducer()->send($queue, $message);
             }
         }
 

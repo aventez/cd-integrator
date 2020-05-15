@@ -43,9 +43,15 @@ class Offer
      */
     private $products;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Offer", inversedBy="groupedOffers")
+     */
+    private $groupedOffers;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->groupedOffers = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -130,6 +136,32 @@ class Offer
     {
         if ($this->products->contains($product)) {
             $this->products->removeElement($product);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getGroupedOffers(): Collection
+    {
+        return $this->groupedOffers;
+    }
+
+    public function addGroupedOffer(self $groupedOffer): self
+    {
+        if (!$this->groupedOffers->contains($groupedOffer)) {
+            $this->groupedOffers[] = $groupedOffer;
+        }
+
+        return $this;
+    }
+
+    public function removeGroupedOffer(self $groupedOffer): self
+    {
+        if ($this->groupedOffers->contains($groupedOffer)) {
+            $this->groupedOffers->removeElement($groupedOffer);
         }
 
         return $this;

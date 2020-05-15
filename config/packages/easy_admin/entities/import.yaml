@@ -10,6 +10,8 @@ easy_admin:
       disabled_actions: ['edit']
 
       list:
+        batch_actions: ['delete']
+
         fields:
           - { property: id, label: app.import.list.fields.id }
           - { property: originalId, label: app.import.list.fields.originalId }

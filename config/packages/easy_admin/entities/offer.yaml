@@ -5,6 +5,7 @@ easy_admin:
       help: app.offer.help
 
       class: App\Entity\Offer
+      controller: App\Controller\OfferController
 
       list:
         batch_actions: ['delete']
@@ -21,4 +22,4 @@ easy_admin:
           - { property: price, label: app.offer.form.fields.price.label }
           - { property: description, label: app.offer.form.fields.description.label }
           - { property: shortDescription, label: app.offer.form.fields.shortDescription.label }
-          #- { property: relatedOffers, label: app.offer.form.fields.relatedOffers.label, help: app.offer.form.fields.relatedOffers.help, type: 'easyadmin_autocomplete' }
+          - { property: groupedOffers, label: app.offer.form.fields.relatedOffers.label, help: app.offer.form.fields.relatedOffers.help, type: 'easyadmin_autocomplete' }

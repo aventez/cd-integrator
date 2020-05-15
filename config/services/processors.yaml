@@ -4,6 +4,8 @@ services:
     autoconfigure: true
 
   App\Application\Envelope\Handler\ProductImportHandler: ~
+  App\Application\Envelope\Handler\ProductRefreshHandler: ~
+  App\Application\Envelope\Handler\OfferRefreshHandler: ~
 
   app.processor.product_import:
     class: App\Queue\Processor\ProductImportProcessor
@@ -18,5 +20,13 @@ services:
     arguments:
       - '@monolog.logger'
       - '@App\Application\Envelope\Handler\ProductRefreshHandler'
+    tags:
+      - { name: enqueue.transport.processor }
+
+  app.processor.offer_refresh:
+    class: App\Queue\Processor\OfferRefreshProcessor
+    arguments:
+      - '@monolog.logger'
+      - '@App\Application\Envelope\Handler\OfferRefreshHandler'
     tags:
       - { name: enqueue.transport.processor }
