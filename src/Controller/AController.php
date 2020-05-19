@@ -32,13 +32,26 @@ class AController extends AbstractController
      */
     public function index()
     {
+        $client = $this->wooCommerceClientFactory->create();
+        $res = $client->get('products/331');
+
+        return new JsonResponse($res);
+
         $offer = $this->repository->find(6);
 
-        $this->context->createProducer()->send(
+        /*$this->context->createProducer()->send(
             $this->context->createQueue('build-offer'),
             $this->context->createMessage(serialize(new BuildOfferEnvelope($offer)))
-        );
+        );*/
 
-        return new JsonResponse('test');
+        $images = [];
+        $products = $offer->getProducts();
+        foreach($products as $product) {
+            foreach($images = $product->getImages() as $image) {
+                $images[] = 'asf';
+            }
+        }
+
+        return new JsonResponse($images);
     } 
 }

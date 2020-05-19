@@ -3,6 +3,7 @@
 namespace App\EventListener;
 
 use App\Application\Envelope\BuildOfferEnvelope;
+use App\Application\Envelope\CreateOfferEnvelope;
 use App\Application\Envelope\ProductImportProcessEnvelope;
 use App\Event\ImportAddedEvent;
 use App\Event\WcOfferFoundEvent;
@@ -31,15 +32,15 @@ class OfferEventSubscriber implements EventSubscriberInterface
     {
         $this->context->createProducer()->send(
             $this->context->createQueue('build-offer'),
-            $this->context->createMessage(serialize(new BuildOfferEnvelope($event->getOffer())))
+            $this->context->createMessage(serialize(new BuildOfferEnvelope($event->getOffer()->getId())))
         );
     }
 
     public function onOfferNotFound(WcOfferNotFoundEvent $event)
     {
-        /*$this->context->createProducer()->send(
+        $this->context->createProducer()->send(
             $this->context->createQueue('create-offer'),
-            $this->context->createMessage(serialize(new CreateOfferEnvelope($event->getOffer())))
-        );*/
+            $this->context->createMessage(serialize(new CreateOfferEnvelope($event->getOffer()->getId())))
+        );
     }
 }

@@ -4,6 +4,7 @@ namespace App\Application\Envelope\Handler;
 
 use App\Application\Enum\ProductImportStatusEnum;
 use App\Application\Envelope\BuildOfferEnvelope;
+use App\Application\Envelope\CreateOfferEnvelope;
 use App\Application\Envelope\EnvelopeInterface;
 use App\Application\Envelope\OfferRefreshProcessEnvelope;
 use App\Application\Envelope\ProductImportProcessEnvelope;
@@ -24,7 +25,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class BuildOfferHandler implements EnvelopeHandlerInterface
+class CreateOfferHandler implements EnvelopeHandlerInterface
 {
     private $offerRepository;
     private $logger;
@@ -87,7 +88,7 @@ class BuildOfferHandler implements EnvelopeHandlerInterface
             $groupedIds[] = $grouped->getShopId();
         }
 
-        $client->put(sprintf('products/%d', $offer->getShopId()), [
+        $response  = $client->post('products', [
             'name' => $offer->getName(),
             'regular_price' => (string) $offer->getPrice(),
             'description' => $offer->getDescription(),
@@ -96,14 +97,17 @@ class BuildOfferHandler implements EnvelopeHandlerInterface
             'manage_stock' => true,
             'stock_quantity' => (int) $stockQuantity,
             'meta_data' => $ids,
-            'grouped_products' => $groupedIds,
+            'grouped_products' => $groupedIds
         ]);
+
+        $offer->setShopId($response->id);
+        $this->em->flush();
 
         return self::ACK;
     }
 
     public function supports(EnvelopeInterface $envelope): bool
     {
-        return $envelope instanceof BuildOfferEnvelope;
+        return $envelope instanceof CreateOfferEnvelope;
     }
 }

@@ -46,6 +46,8 @@ app:
           label: 'Nazwa'
         description:
           label: 'Opis'
+        stock:
+          label: 'Na stanie'
         price:
           label: 'Cena'
           help: 'Nie możesz edytować tej wartości, ponieważ jest ona aktualizowana dynamicznie przy każdym pobraniu produktu. Edycja odbywa się przy wystawianiu oferty sprzedaży.'

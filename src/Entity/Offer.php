@@ -53,6 +53,11 @@ class Offer
      */
     private $shopId;
 
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $images = [];
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -180,6 +185,18 @@ class Offer
     public function setShopId(int $shopId): self
     {
         $this->shopId = $shopId;
+
+        return $this;
+    }
+
+    public function getImages(): ?array
+    {
+        return $this->images;
+    }
+
+    public function setImages(array $images): self
+    {
+        $this->images = $images;
 
         return $this;
     }

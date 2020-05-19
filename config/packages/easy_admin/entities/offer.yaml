@@ -20,6 +20,6 @@ easy_admin:
           - { property: name, label: app.offer.form.fields.name.label }
           - { property: products, label: app.offer.form.fields.products.label, help: app.offer.form.fields.products.help, type: 'easyadmin_autocomplete', type_options: { required: true } }
           - { property: price, label: app.offer.form.fields.price.label }
-          - { property: description, label: app.offer.form.fields.description.label }
-          - { property: shortDescription, label: app.offer.form.fields.shortDescription.label }
+          - { property: description, label: app.offer.form.fields.description.label, type: 'fos_ckeditor' }
+          - { property: shortDescription, label: app.offer.form.fields.shortDescription.label, type: 'fos_ckeditor' }
           - { property: groupedOffers, label: app.offer.form.fields.relatedOffers.label, help: app.offer.form.fields.relatedOffers.help, type: 'easyadmin_autocomplete' }
