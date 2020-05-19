@@ -61,7 +61,11 @@ class OfferRefreshHandler implements EnvelopeHandlerInterface
 
             $this->eventDispatcher->dispatch(new WcOfferFoundEvent($offer));
         } catch(HttpClientException $ex) {
-            $this->eventDispatcher->dispatch(new WcOfferNotFoundEvent($offer));
+            if($ex->getCode() == 404) {
+                $this->eventDispatcher->dispatch(new WcOfferNotFoundEvent($offer));
+            } else {
+                return self::REQUEUE;
+            }
         }
 
         return self::ACK;
