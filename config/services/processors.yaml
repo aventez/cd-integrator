@@ -6,6 +6,7 @@ services:
   App\Application\Envelope\Handler\ProductImportHandler: ~
   App\Application\Envelope\Handler\ProductRefreshHandler: ~
   App\Application\Envelope\Handler\OfferRefreshHandler: ~
+  App\Application\Envelope\Handler\BuildOfferHandler: ~
 
   app.processor.product_import:
     class: App\Queue\Processor\ProductImportProcessor
@@ -22,6 +23,12 @@ services:
       - '@App\Application\Envelope\Handler\ProductRefreshHandler'
     tags:
       - { name: enqueue.transport.processor }
+
+  app.processor.build_offer:
+    class: App\Queue\Processor\BuildOfferProcessor
+    arguments:
+      - '@monolog.logger'
+      - '@App\Application\Envelope\Handler\BuildOfferHandler'
 
   app.processor.offer_refresh:
     class: App\Queue\Processor\OfferRefreshProcessor

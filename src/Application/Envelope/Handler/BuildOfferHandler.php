@@ -3,6 +3,7 @@
 namespace App\Application\Envelope\Handler;
 
 use App\Application\Enum\ProductImportStatusEnum;
+use App\Application\Envelope\BuildOfferEnvelope;
 use App\Application\Envelope\EnvelopeInterface;
 use App\Application\Envelope\OfferRefreshProcessEnvelope;
 use App\Application\Envelope\ProductImportProcessEnvelope;
@@ -22,7 +23,7 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-class OfferRefreshHandler implements EnvelopeHandlerInterface
+class BuildOfferHandler implements EnvelopeHandlerInterface
 {
     private $offerRepository;
     private $logger;
@@ -50,25 +51,13 @@ class OfferRefreshHandler implements EnvelopeHandlerInterface
     {
         $client = $this->wooCommerceClientFactory->create();
 
-        $offer = $this->offerRepository->find($envelope->offerId);
-        if(!$offer) {
-            $this->logger->error(sprintf('Offer with id %d was not found.', $envelope->offerId));
-            return self::REJECT;
-        }
-
-        try {
-            $client->get(sprintf('products/%d', $offer->getShopId()));
-
-            $this->eventDispatcher->dispatch(new WcOfferFoundEvent($offer));
-        } catch(HttpClientException $ex) {
-            $this->eventDispatcher->dispatch(new WcOfferNotFoundEvent($offer));
-        }
+        $this->logger->critical('test 123');
 
         return self::ACK;
     }
 
     public function supports(EnvelopeInterface $envelope): bool
     {
-        return $envelope instanceof OfferRefreshProcessEnvelope;
+        return $envelope instanceof BuildOfferEnvelope;
     }
 }

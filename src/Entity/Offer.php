@@ -48,6 +48,11 @@ class Offer
      */
     private $groupedOffers;
 
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $shopId;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -163,6 +168,18 @@ class Offer
         if ($this->groupedOffers->contains($groupedOffer)) {
             $this->groupedOffers->removeElement($groupedOffer);
         }
+
+        return $this;
+    }
+
+    public function getShopId(): ?int
+    {
+        return $this->shopId;
+    }
+
+    public function setShopId(int $shopId): self
+    {
+        $this->shopId = $shopId;
 
         return $this;
     }
