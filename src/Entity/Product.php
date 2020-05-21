@@ -77,6 +77,11 @@ class Product
      */
     private $offers;
 
+    /**
+     * @ORM\Column(type="array", nullable=true)
+     */
+    private $categories = [];
+
     public function __construct()
     {
         $this->offers = new ArrayCollection();
@@ -236,6 +241,18 @@ class Product
             $this->offers->removeElement($offer);
             $offer->removeProduct($this);
         }
+
+        return $this;
+    }
+
+    public function getCategories(): ?array
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(?array $categories): self
+    {
+        $this->categories = $categories;
 
         return $this;
     }

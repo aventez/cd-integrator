@@ -28,6 +28,7 @@ easy_admin:
           - { property: coffeeDeskId, label: app.product.form.fields.coffeeDeskId.label, type_options: { disabled: true } }
           - { property: name, label: app.product.form.fields.name.label }
           - { property: description, label: app.product.form.fields.description.label, type: 'fos_ckeditor' }
+          - { property: categories, label: app.product.form.fields.categories.label, help: app.product.form.fields.categories.help }
           - { property: price, label: app.product.form.fields.price.label, type: 'money', help: app.product.form.fields.price.help, type_options: { disabled: true, currency: 'PLN' } }
           - { property: stock, label: app.product.form.fields.stock.label, type_options: { disabled: true } }
           - { property: images, label: app.product.form.fields.images.label }

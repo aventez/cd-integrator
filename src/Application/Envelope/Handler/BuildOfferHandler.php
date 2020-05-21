@@ -61,6 +61,7 @@ class BuildOfferHandler implements EnvelopeHandlerInterface
         $stockQuantity = null;
         $imagesArray = (array) null;
         $ids = (array) null;
+        $categories = (array) null;
         foreach($products = $offer->getProducts() as $product) {
             $newStock = $product->getStock() + $product->getBuffer();
             if($newStock < 0) $newStock = 0;
@@ -74,6 +75,10 @@ class BuildOfferHandler implements EnvelopeHandlerInterface
 
             foreach($images = $product->getImages() as $image) {
                 $imagesArray[]['src'] = $image;
+            }
+
+            foreach($product->getCategories() as $category) {
+                $categories[]['id'] = $category;
             }
 
             $ids[] = [
@@ -90,8 +95,10 @@ class BuildOfferHandler implements EnvelopeHandlerInterface
         $client->put(sprintf('products/%d', $offer->getShopId()), [
             'name' => $offer->getName(),
             'regular_price' => (string) $offer->getPrice(),
+            'sale_price' => (string) $offer->getPromotionalPrice(),
             'description' => $offer->getDescription(),
             'short_description' => $offer->getShortDescription(),
+            'categories' => $categories,
             'images' => $imagesArray,
             'manage_stock' => true,
             'stock_quantity' => (int) $stockQuantity,

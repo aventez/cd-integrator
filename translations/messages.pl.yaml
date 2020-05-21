@@ -1,11 +1,20 @@
 app:
   title: 'Integrator'
   sidebar:
-    main: 'Główne'
+    main: 'Menu zarządzania'
     import: 'Import produktów'
     product: 'Produkty'
     offer: 'Oferty'
     admin: 'Konta administratorskie'
+    actionlog: 'Logi akcji'
+  actionlog:
+    label: 'Logi akcji'
+    help: 'W tym miejscu znajduje się spis wszystkich wykonanych akcji cyklicznych.'
+    list:
+      fields:
+        id: 'ID'
+        datetime: 'Czas'
+        content: 'Wpis'
   admin:
     label: 'Konta administratorskie'
     help: 'Panel zarządzania kontami administracyjnymi. Aby utworzyć nowe konto naciśnij niebieski przycisk <b>Stwórz</b> po prawej stronie i uzupełnij formularz.'
@@ -62,6 +71,9 @@ app:
           label: 'Nazwa'
         description:
           label: 'Opis'
+        categories:
+          label: 'Kategorie'
+          help: 'W tym miejscu wpisz numery kategorii do których ma być przyporządkowana oferta.'
         stock:
           label: 'Na stanie'
         price:
@@ -94,6 +106,9 @@ app:
         relatedOffers:
           label: 'Powiązane produkty (grupowe)'
           help: 'To pole jest nieobowiązkowe. Wypełnij je, jeśli chcesz, aby produkt był <b>grupowy</b>.'
+        promotionalPrice:
+          label: 'Cena promocyjna'
+          help: 'To pole może pozostać puste. Uzupełnij je tylko wtedy, jeśli chcesz zastosować promocję.'
         price:
           label: 'Cena'
         description:

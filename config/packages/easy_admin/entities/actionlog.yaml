@@ -1,0 +1,15 @@
+easy_admin:
+  entities:
+    Actionlog:
+      label: app.actionlog.label
+      help: app.actionlog.help
+
+      class: App\Entity\Actionlog
+
+      disabled_actions: ['new', 'edit', 'delete']
+
+      list:
+        fields:
+          - { property: id, label: app.actionlog.list.fields.id }
+          - { property: datetime, label: app.actionlog.list.fields.datetime }
+          - { property: content, label: app.actionlog.list.fields.content }

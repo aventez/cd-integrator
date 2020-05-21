@@ -54,9 +54,9 @@ class Offer
     private $shopId;
 
     /**
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="float", nullable=true)
      */
-    private $images = [];
+    private $promotionalPrice;
 
     public function __construct()
     {
@@ -189,14 +189,14 @@ class Offer
         return $this;
     }
 
-    public function getImages(): ?array
+    public function getPromotionalPrice(): ?float
     {
-        return $this->images;
+        return $this->promotionalPrice;
     }
 
-    public function setImages(array $images): self
+    public function setPromotionalPrice(?float $promotionalPrice): self
     {
-        $this->images = $images;
+        $this->promotionalPrice = $promotionalPrice;
 
         return $this;
     }
