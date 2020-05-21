@@ -5,6 +5,20 @@ app:
     import: 'Import produktów'
     product: 'Produkty'
     offer: 'Oferty'
+    admin: 'Konta administratorskie'
+  admin:
+    label: 'Konta administratorskie'
+    help: 'Panel zarządzania kontami administracyjnymi. Aby utworzyć nowe konto naciśnij niebieski przycisk <b>Stwórz</b> po prawej stronie i uzupełnij formularz.'
+    list:
+      fields:
+        id: 'ID'
+        username: 'Nazwa użytkownika'
+        password: 'Hasło'
+    form:
+      fields:
+        id: 'ID'
+        username: 'Nazwa użytkownika'
+        password: 'Hasło'
   import:
     label: 'Import produktów'
     help: 'W tej sekcji znajdziesz narzędzia do importu produktów. Aby zaimportować nowy produkt z hurtowni wciśnij przycisk po prawej stronie i uzupełnij jego identyfikator.'
@@ -29,6 +43,8 @@ app:
     label: 'Zarządzanie produktami'
     help: 'Witaj w sekcji zarządzania produktami. Znajdziesz tutaj wszystkie informacje o dostępnych w systemie produktach. Aby dodać nowy przejdź do sekcji <b>Import produktów</b>.'
     list:
+      actions:
+        generateOffer: 'Formularz oferty'
       fields:
         id: 'ID'
         coffeeDeskId: 'ID z CoffeeDesk'

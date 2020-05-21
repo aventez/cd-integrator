@@ -11,6 +11,8 @@ easy_admin:
 
       list:
         batch_actions: ['delete']
+        actions:
+          - { name: generateOffer, label: app.product.list.actions.generateOffer }
 
         fields:
           - { property: id, label: app.product.list.fields.id }

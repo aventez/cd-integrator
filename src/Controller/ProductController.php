@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use App\Application\Envelope\ProductRefreshProcessEnvelope;
+use App\Entity\Offer;
 use App\Repository\ProductRepository;
 use Interop\Queue\Context;
+use Symfony\Component\Form\Form;
 
 class ProductController extends MainController
 {
@@ -15,6 +17,17 @@ class ProductController extends MainController
     {
         $this->context = $context;
         $this->repository = $repository;
+    }
+
+    public function generateOfferAction()
+    {
+        $id = $this->request->query->get('id');
+
+        return $this->redirectToRoute('easyadmin', [
+            'entity' => 'Offer',
+            'action' => 'new',
+            'product' => $id
+        ]);
     }
 
     public function refreshAction()

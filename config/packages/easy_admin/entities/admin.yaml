@@ -1,0 +1,19 @@
+easy_admin:
+  entities:
+    Admin:
+      label: app.admin.label
+      help: app.admin.help
+
+      class: App\Entity\Admin
+      controller: App\Controller\AdminController
+
+      list:
+        fields:
+          - { property: id, label: app.admin.list.fields.id }
+          - { property: username, label: app.admin.list.fields.username }
+
+      form:
+        fields:
+          - { property: id, label: app.admin.form.fields.id, type_options: { disabled: true } }
+          - { property: username, label: app.admin.form.fields.username }
+          - { property: password, label: app.admin.form.fields.password, type: 'password' }
