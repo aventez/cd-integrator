@@ -30,4 +30,13 @@ class ProductRepository extends ServiceEntityRepository
         $this->_em->remove($product);
         $this->_em->flush();
     }
+
+    public function findIds(): ?array
+    {
+        $result = $this->_em->createQueryBuilder()
+            ->select('p.id, p.syncDisabled')
+            ->from('App\Entity\Product', 'p')->getQuery()->getResult();
+
+        return $result;
+    }
 }

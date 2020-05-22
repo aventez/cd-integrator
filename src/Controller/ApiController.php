@@ -69,10 +69,11 @@ class ApiController extends AbstractController
     public function refreshProducts()
     {
         $queue = $this->context->createQueue('refresh-product-to-process');
+        $products = $this->productRepository->findIds();
 
-        foreach($products = $this->productRepository->findAll() as $product) {
-            if($product->getSyncDisabled() != true) {
-                $message = $this->context->createMessage(serialize(new ProductRefreshProcessEnvelope($product->getId())));
+        foreach($products as $product) {
+            if($product['syncDisabled'] != true) {
+                $message = $this->context->createMessage(serialize(new ProductRefreshProcessEnvelope($product['id'])));
                 $this->context->createProducer()->send($queue, $message);
             }
         }
