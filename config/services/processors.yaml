@@ -8,6 +8,7 @@ services:
   App\Application\Envelope\Handler\OfferRefreshHandler: ~
   App\Application\Envelope\Handler\BuildOfferHandler: ~
   App\Application\Envelope\Handler\CreateOfferHandler: ~
+  App\Application\Envelope\Handler\RemoveOfferHandler: ~
 
   app.processor.product_import:
     class: App\Queue\Processor\ProductImportProcessor
@@ -38,6 +39,14 @@ services:
     arguments:
       - '@monolog.logger'
       - '@App\Application\Envelope\Handler\CreateOfferHandler'
+    tags:
+      - { name: enqueue.transport.processor }
+
+  app.processor.remove_offer:
+    class: App\Queue\Processor\RemoveOfferProcessor
+    arguments:
+      - '@monolog.logger'
+      - '@App\Application\Envelope\Handler\RemoveOfferHandler'
     tags:
       - { name: enqueue.transport.processor }
 

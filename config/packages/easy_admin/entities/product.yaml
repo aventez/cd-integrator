@@ -14,6 +14,10 @@ easy_admin:
         actions:
           - { name: generateOffer, label: app.product.list.actions.generateOffer }
 
+        filters:
+          - { property: price, label: app.product.list.filters.price }
+          - { property: syncDisabled, label: app.product.list.filters.syncDisabled }
+
         fields:
           - { property: id, label: app.product.list.fields.id }
           - { property: coffeeDeskId, label: app.product.list.fields.coffeeDeskId }

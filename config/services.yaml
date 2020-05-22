@@ -28,6 +28,12 @@ services:
         tags:
             - { name: doctrine.orm.entity_listener, event: 'postRemove', entity: 'App\Entity\Product', method: 'onRemove' }
 
+    App\EventListener\OfferEventListener:
+        arguments:
+            $context: '@enqueue.transport.default.context'
+        tags:
+            - { name: doctrine.orm.entity_listener, event: 'preRemove', entity: 'App\Entity\Offer', method: 'onRemove' }
+
     App\Application\Provider\ProductDataProvider: ~
 
     App\Application\Handler\Filter\:

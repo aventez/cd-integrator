@@ -54,6 +54,9 @@ app:
     list:
       actions:
         generateOffer: 'Formularz oferty'
+      filters:
+        price: 'Cena'
+        syncDisabled: 'Wyłączona synchronizacja'
       fields:
         id: 'ID'
         coffeeDeskId: 'ID z CoffeeDesk'
