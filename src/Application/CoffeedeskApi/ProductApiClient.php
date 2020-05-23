@@ -23,7 +23,7 @@ class ProductApiClient extends Client
         $this->apiKey = $apiKey;
     }
 
-    public function getProductInfo(int $id)
+    public function getProductInfo(int $id): ?CoffeeDeskProductDto
     {
         $response = $this->get(sprintf('products/%d', $id));
 
@@ -34,7 +34,6 @@ class ProductApiClient extends Client
         $response = json_decode($response->getBody()->getContents(), true);
 
         if(isset($response['id'])) return CoffeeDeskProductDto::constructFromData($response);
-
         return NULL;
     }
 }

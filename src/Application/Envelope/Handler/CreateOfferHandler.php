@@ -2,27 +2,13 @@
 
 namespace App\Application\Envelope\Handler;
 
-use App\Application\Enum\ProductImportStatusEnum;
-use App\Application\Envelope\BuildOfferEnvelope;
 use App\Application\Envelope\CreateOfferEnvelope;
 use App\Application\Envelope\EnvelopeInterface;
-use App\Application\Envelope\OfferRefreshProcessEnvelope;
-use App\Application\Envelope\ProductImportProcessEnvelope;
-use App\Application\Envelope\ProductRefreshProcessEnvelope;
-use App\Application\Provider\ProductDataProvider;
 use App\Application\WcApi\Factory\WooCommerceClientFactory;
-use App\Application\WcApi\HttpClient\HttpClientException;
 use App\Entity\Offer;
-use App\Entity\Product;
-use App\Event\WcOfferFoundEvent;
-use App\Event\WcOfferNotFoundEvent;
-use App\Factory\ProductFactory;
 use App\Repository\OfferRepository;
-use App\Repository\ProductImportRepository;
-use App\Repository\ProductRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class CreateOfferHandler implements EnvelopeHandlerInterface

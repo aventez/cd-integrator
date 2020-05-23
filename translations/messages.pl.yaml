@@ -60,7 +60,11 @@ app:
       fields:
         id: 'ID'
         coffeeDeskId: 'ID z CoffeeDesk'
-        price: 'Cena'
+        priceRegularGross: 'Cena (R)'
+        priceIndividualGross: 'Cena (I)'
+        pricePromotionalGross: 'Cena (P)'
+        priceDiff: 'Zysk (R-I)'
+        brand: 'Marka'
         name: 'Nazwa'
         lastRefresh: 'Ostatnie odświeżenie'
         syncDisabled: 'Wyłączenie synchronizacji'
@@ -79,8 +83,14 @@ app:
           help: 'W tym miejscu wpisz numery kategorii do których ma być przyporządkowana oferta.'
         stock:
           label: 'Na stanie'
-        price:
-          label: 'Cena'
+        priceRegularGross:
+          label: 'Cena regularna'
+          help: 'Nie możesz edytować tej wartości, ponieważ jest ona aktualizowana dynamicznie przy każdym pobraniu produktu. Edycja odbywa się przy wystawianiu oferty sprzedaży.'
+        priceIndividualGross:
+          label: 'Cena indywidualna'
+          help: 'Nie możesz edytować tej wartości, ponieważ jest ona aktualizowana dynamicznie przy każdym pobraniu produktu. Edycja odbywa się przy wystawianiu oferty sprzedaży.'
+        pricePromotionalGross:
+          label: 'Cena promocyjna'
           help: 'Nie możesz edytować tej wartości, ponieważ jest ona aktualizowana dynamicznie przy każdym pobraniu produktu. Edycja odbywa się przy wystawianiu oferty sprzedaży.'
         images:
           label: 'Zdjęcia produktu'

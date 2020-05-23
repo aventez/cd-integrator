@@ -21,8 +21,11 @@ class ProductFactory
         $product->setName($productDto->getName());
         $product->setDescription($productDto->getDescription());
         $product->setCoffeeDeskId($productDto->getId());
-        $product->setPrice($productDto->getPrice());
+        $product->setPriceIndividualGross($productDto->getPriceIndividualGross());
+        $product->setPricePromotionalGross($productDto->getPricePromotionalGross());
+        $product->setPriceRegularGross($productDto->getPriceRegularGross());
         $product->setImages($productDto->getImages());
+        $product->setBrand($productDto->getBrand());
         $product->setStock($productDto->getStock());
 
         $this->repository->save($product);
@@ -32,7 +35,9 @@ class ProductFactory
 
     public function updateProductFromDto(Product $product, CoffeeDeskProductDto $productDto): Product
     {
-        $product->setPrice($productDto->getPrice());
+        $product->setPriceIndividualGross($productDto->getPriceIndividualGross());
+        $product->setPricePromotionalGross($productDto->getPricePromotionalGross());
+        $product->setPriceRegularGross($productDto->getPriceRegularGross());
         $product->setStock($productDto->getStock());
         $product->setLastRefresh(new \DateTimeImmutable());
 

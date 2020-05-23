@@ -69,7 +69,7 @@ class OfferController extends MainController
 
         $fields = (array) null;
         if($product) {
-            $fields['price'] = $product->getPrice();
+            $fields['price'] = $product->getPriceRegularGross();
             $fields['name'] = $product->getName();
             $fields['description'] = $product->getDescription();
             $fields['product'] = $product;

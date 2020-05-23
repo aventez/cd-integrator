@@ -9,7 +9,10 @@ class CoffeeDeskProductDto
     private $description;
     private $images;
     private $stock;
-    private $price;
+    private $priceIndividualGross;
+    private $pricePromotionalGross;
+    private $priceRegularGross;
+    private $brand;
 
     public function __construct
     (
@@ -18,7 +21,10 @@ class CoffeeDeskProductDto
         string $description,
         ?array $images,
         ?int $stock,
-        float $price
+        ?float $priceIndividualGross,
+        ?float $pricePromotionalGross,
+        ?float $priceRegularGross,
+        ?string $brand
     )
     {
         $this->id = $id;
@@ -26,7 +32,10 @@ class CoffeeDeskProductDto
         $this->description = $description;
         $this->images = $images;
         $this->stock = $stock;
-        $this->price = $price;
+        $this->priceIndividualGross = $priceIndividualGross;
+        $this->pricePromotionalGross = $pricePromotionalGross;
+        $this->priceRegularGross = $priceRegularGross;
+        $this->brand = $brand;
     }
 
     public function getId(): int
@@ -54,9 +63,24 @@ class CoffeeDeskProductDto
         return $this->stock;
     }
 
-    public function getPrice(): float
+    public function getPriceIndividualGross(): float
     {
-        return $this->price;
+        return $this->priceIndividualGross;
+    }
+
+    public function getPricePromotionalGross(): float
+    {
+        return $this->pricePromotionalGross;
+    }
+
+    public function getPriceRegularGross(): float
+    {
+        return $this->priceRegularGross;
+    }
+
+    public function getBrand(): ?string
+    {
+        return $this->brand;
     }
 
     public static function constructFromData(array $record): ?self
@@ -67,7 +91,10 @@ class CoffeeDeskProductDto
             $record['description'],
             $record['images'],
             $record['availableStock'],
-            $record['pricePromotionalGross'] ? $record['pricePromotionalGross'] : $record['priceRegularGross']
+            $record['priceIndividualGross'],
+            $record['pricePromotionalGross'],
+            $record['priceRegularGross'],
+            $record['brand']
         );
     }
 }

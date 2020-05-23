@@ -47,11 +47,6 @@ class Product
     private $shopId;
 
     /**
-     * @ORM\Column(type="float")
-     */
-    private $price;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $lastRefresh;
@@ -81,6 +76,26 @@ class Product
      * @ORM\Column(type="array", nullable=true)
      */
     private $categories = [];
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $priceIndividualGross;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $pricePromotionalGross;
+
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $priceRegularGross;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $brand;
 
     public function __construct()
     {
@@ -148,18 +163,6 @@ class Product
     public function setShopId(?int $shopId): self
     {
         $this->shopId = $shopId;
-
-        return $this;
-    }
-
-    public function getPrice(): ?float
-    {
-        return $this->price;
-    }
-
-    public function setPrice(float $price): self
-    {
-        $this->price = $price;
 
         return $this;
     }
@@ -253,6 +256,59 @@ class Product
     public function setCategories(?array $categories): self
     {
         $this->categories = $categories;
+
+        return $this;
+    }
+
+    public function getPriceIndividualGross(): ?float
+    {
+        return $this->priceIndividualGross;
+    }
+
+    public function getPriceDiff(): ?float
+    {
+        return ($this->priceRegularGross - $this->priceIndividualGross);
+    }
+
+    public function setPriceIndividualGross(?float $priceIndividualGross): self
+    {
+        $this->priceIndividualGross = $priceIndividualGross;
+
+        return $this;
+    }
+
+    public function getPricePromotionalGross(): ?float
+    {
+        return $this->pricePromotionalGross;
+    }
+
+    public function setPricePromotionalGross(?float $pricePromotionalGross): self
+    {
+        $this->pricePromotionalGross = $pricePromotionalGross;
+
+        return $this;
+    }
+
+    public function getPriceRegularGross(): ?float
+    {
+        return $this->priceRegularGross;
+    }
+
+    public function setPriceRegularGross(?float $priceRegularGross): self
+    {
+        $this->priceRegularGross = $priceRegularGross;
+
+        return $this;
+    }
+
+    public function getBrand(): ?string
+    {
+        return $this->brand;
+    }
+
+    public function setBrand(?string $brand): self
+    {
+        $this->brand = $brand;
 
         return $this;
     }

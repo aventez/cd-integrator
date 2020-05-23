@@ -15,14 +15,20 @@ easy_admin:
           - { name: generateOffer, label: app.product.list.actions.generateOffer }
 
         filters:
-          - { property: price, label: app.product.list.filters.price }
+          - { property: priceRegularGross, label: app.product.list.filters.priceRegularGross }
+          - { property: priceIndividualGross, label: app.product.list.filters.priceIndividualGross }
+          - { property: pricePromotionalGross, label: app.product.list.filters.pricePromotionalGross }
           - { property: syncDisabled, label: app.product.list.filters.syncDisabled }
 
         fields:
           - { property: id, label: app.product.list.fields.id }
           - { property: coffeeDeskId, label: app.product.list.fields.coffeeDeskId }
           - { property: name, label: app.product.list.fields.name }
-          - { property: price, format: '%.2f PLN', label: app.product.list.fields.price }
+          - { property: brand, label: app.product.list.fields.brand }
+          - { property: priceRegularGross, format: '%.2f PLN', label: app.product.list.fields.priceRegularGross }
+          - { property: priceIndividualGross, format: '%.2f PLN', label: app.product.list.fields.priceIndividualGross }
+          - { property: pricePromotionalGross, format: '%.2f PLN', label: app.product.list.fields.pricePromotionalGross }
+          - { property: priceDiff, format: '%.2f PLN', label: app.product.list.fields.priceDiff }
           - { property: lastRefresh, label: app.product.list.fields.lastRefresh }
           - { property: syncDisabled, label: app.product.list.fields.syncDisabled }
 
@@ -33,7 +39,9 @@ easy_admin:
           - { property: name, label: app.product.form.fields.name.label }
           - { property: description, label: app.product.form.fields.description.label, type: 'fos_ckeditor' }
           - { property: categories, label: app.product.form.fields.categories.label, help: app.product.form.fields.categories.help }
-          - { property: price, label: app.product.form.fields.price.label, type: 'money', help: app.product.form.fields.price.help, type_options: { disabled: true, currency: 'PLN' } }
+          - { property: priceRegularGross, label: app.product.form.fields.priceRegularGross.label, type: 'money', help: app.product.form.fields.priceRegularGross.help, type_options: { disabled: true, currency: 'PLN' } }
+          - { property: priceIndividualGross, label: app.product.form.fields.priceIndividualGross.label, type: 'money', help: app.product.form.fields.priceIndividualGross.help, type_options: { disabled: true, currency: 'PLN' } }
+          - { property: pricePromotionalGross, label: app.product.form.fields.pricePromotionalGross.label, type: 'money', help: app.product.form.fields.pricePromotionalGross.help, type_options: { disabled: true, currency: 'PLN' } }
           - { property: stock, label: app.product.form.fields.stock.label, type_options: { disabled: true } }
           - { property: images, label: app.product.form.fields.images.label }
           - { property: buffer, label: app.product.form.fields.buffer.label, help: app.product.form.fields.buffer.help }

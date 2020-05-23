@@ -5,7 +5,6 @@ namespace App\Application\Provider;
 use App\Application\CoffeedeskApi\ProductApiClient;
 use App\Application\CoffeedeskApi\ProductNotFoundException;
 use App\Application\Model\Dto\CoffeeDeskProductDto;
-use App\Entity\ProductImport;
 
 class ProductDataProvider
 {
