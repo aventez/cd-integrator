@@ -49,6 +49,16 @@ class ProductController extends MainController
         $this->em->flush();
     }
 
+    public function disableSyncBatchAction(array $ids)
+    {
+        foreach ($ids as $id) {
+            $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+            $product->setSyncDisabled(!$product->getSyncDisabled());
+        }
+
+        $this->em->flush();
+    }
+
     public function refreshAction()
     {
         $queue = $this->context->createQueue('refresh-product-to-process');

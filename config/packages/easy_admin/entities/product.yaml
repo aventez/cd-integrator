@@ -13,13 +13,14 @@ easy_admin:
         batch_actions:
           - delete
           - { name: createOffers, ask_confirm: true, label: app.product.list.actions.createOffers }
+          - { name: disableSync, ask_confirm: true, label: app.product.list.actions.disableSync }
         actions:
           - { name: generateOffer, label: app.product.list.actions.generateOffer }
 
         filters:
           - { property: priceRegularGross, label: app.product.list.filters.priceRegularGross }
-          - { property: priceIndividualGross, label: app.product.list.filters.priceIndividualGross }
           - { property: pricePromotionalGross, label: app.product.list.filters.pricePromotionalGross }
+          - { property: priceIndividualGross, label: app.product.list.filters.priceIndividualGross }
           - { property: syncDisabled, label: app.product.list.filters.syncDisabled }
 
         fields:
@@ -29,8 +30,8 @@ easy_admin:
           - { property: brand, label: app.product.list.fields.brand }
           - { property: stock, label: app.product.list.fields.stock }
           - { property: priceRegularGross, format: '%.2f PLN', label: app.product.list.fields.priceRegularGross }
-          - { property: priceIndividualGross, format: '%.2f PLN', label: app.product.list.fields.priceIndividualGross }
           - { property: pricePromotionalGross, format: '%.2f PLN', label: app.product.list.fields.pricePromotionalGross }
+          - { property: priceIndividualGross, format: '%.2f PLN', label: app.product.list.fields.priceIndividualGross }
           - { property: priceDiff, format: '%.2f PLN', label: app.product.list.fields.priceDiff }
           - { property: lastRefresh, label: app.product.list.fields.lastRefresh }
           - { property: syncDisabled, label: app.product.list.fields.syncDisabled }
@@ -43,8 +44,8 @@ easy_admin:
           - { property: description, label: app.product.form.fields.description.label, type: 'fos_ckeditor' }
           - { property: categories, label: app.product.form.fields.categories.label, help: app.product.form.fields.categories.help }
           - { property: priceRegularGross, label: app.product.form.fields.priceRegularGross.label, type: 'money', help: app.product.form.fields.priceRegularGross.help, type_options: { disabled: true, currency: 'PLN' } }
-          - { property: priceIndividualGross, label: app.product.form.fields.priceIndividualGross.label, type: 'money', help: app.product.form.fields.priceIndividualGross.help, type_options: { disabled: true, currency: 'PLN' } }
           - { property: pricePromotionalGross, label: app.product.form.fields.pricePromotionalGross.label, type: 'money', help: app.product.form.fields.pricePromotionalGross.help, type_options: { disabled: true, currency: 'PLN' } }
+          - { property: priceIndividualGross, label: app.product.form.fields.priceIndividualGross.label, type: 'money', help: app.product.form.fields.priceIndividualGross.help, type_options: { disabled: true, currency: 'PLN' } }
           - { property: stock, label: app.product.form.fields.stock.label, type_options: { disabled: true } }
           - { property: images, label: app.product.form.fields.images.label }
           - { property: buffer, label: app.product.form.fields.buffer.label, help: app.product.form.fields.buffer.help }

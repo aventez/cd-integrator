@@ -42,6 +42,7 @@ class ProductFactory
         $product->setStock($productDto->getStock());
         $product->setLastRefresh(new \DateTimeImmutable());
         $product->setCategories($productDto->getCategories());
+        $product->setBrand($productDto->getBrand());
 
         $this->repository->save($product);
 

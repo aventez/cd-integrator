@@ -72,6 +72,7 @@ app:
       actions:
         generateOffer: 'Formularz oferty'
         createOffers: 'Stwórz oferty'
+        disableSync: 'Przełącz synchronizację'
       filters:
         priceRegularGross: 'Cena regularna'
         priceIndividualGross: 'Cena indywidualna'
@@ -79,16 +80,16 @@ app:
         syncDisabled: 'Wyłączona synchronizacja'
       fields:
         id: 'ID'
-        coffeeDeskId: 'ID z CoffeeDesk'
+        coffeeDeskId: 'ID CD'
         priceRegularGross: 'Cena (R)'
         priceIndividualGross: 'Cena (I)'
         pricePromotionalGross: 'Cena (P)'
         priceDiff: 'Zysk (R-I)'
-        stock: 'Realny stan'
+        stock: 'Stan'
         brand: 'Marka'
         name: 'Nazwa'
-        lastRefresh: 'Ostatnie odświeżenie'
-        syncDisabled: 'Wyłączenie synchronizacji'
+        lastRefresh: 'Data odświeżenia'
+        syncDisabled: 'Sync off'
     form:
       fields:
         id:
