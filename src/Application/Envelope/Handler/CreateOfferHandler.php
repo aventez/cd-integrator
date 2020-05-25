@@ -6,6 +6,7 @@ use App\Application\Envelope\CreateOfferEnvelope;
 use App\Application\Envelope\EnvelopeInterface;
 use App\Application\WcApi\Factory\WooCommerceClientFactory;
 use App\Entity\Offer;
+use App\Repository\CategoryRepository;
 use App\Repository\OfferRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -18,6 +19,7 @@ class CreateOfferHandler implements EnvelopeHandlerInterface
     private $em;
     private $wooCommerceClientFactory;
     private $eventDispatcher;
+    private $categoryRepository;
 
     public function __construct
     (
@@ -25,7 +27,8 @@ class CreateOfferHandler implements EnvelopeHandlerInterface
         LoggerInterface $logger,
         EntityManagerInterface $em,
         WooCommerceClientFactory $wooCommerceClientFactory,
-        EventDispatcherInterface $eventDispatcher
+        EventDispatcherInterface $eventDispatcher,
+        CategoryRepository $categoryRepository
     )
     {
         $this->logger = $logger;
@@ -33,6 +36,7 @@ class CreateOfferHandler implements EnvelopeHandlerInterface
         $this->em = $em;
         $this->wooCommerceClientFactory = $wooCommerceClientFactory;
         $this->eventDispatcher = $eventDispatcher;
+        $this->categoryRepository = $categoryRepository;
     }
 
     public function handle(EnvelopeInterface $envelope): string
@@ -66,7 +70,10 @@ class CreateOfferHandler implements EnvelopeHandlerInterface
             }
 
             foreach($product->getCategories() as $category) {
-                $categories[]['id'] = $category;
+                $cat = $this->categoryRepository->findOneBy(['categoryKey' => $category]);
+                if($cat) {
+                    $categories[]['id'] = $cat->getCategoryValue();
+                }
             }
 
             $ids[] = [

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Application\Envelope\ProductRefreshProcessEnvelope;
 use App\Entity\Offer;
+use App\Entity\Product;
 use App\Repository\ProductRepository;
 use Interop\Queue\Context;
 use Symfony\Component\Form\Form;
@@ -28,6 +29,24 @@ class ProductController extends MainController
             'action' => 'new',
             'product' => $id
         ]);
+    }
+
+    public function createOffersBatchAction(array $ids)
+    {
+        foreach ($ids as $id) {
+            $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+
+            $offer = new Offer();
+            $offer->setPrice($product->getPriceRegularGross());
+            $offer->setDescription($product->getDescription());
+            $offer->setShortDescription($product->getDescription());
+            $offer->setName($product->getName());
+            $offer->addProduct($product);
+
+            $this->em->persist($offer);
+        }
+
+        $this->em->flush();
     }
 
     public function refreshAction()

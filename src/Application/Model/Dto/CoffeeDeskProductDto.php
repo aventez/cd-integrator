@@ -13,6 +13,7 @@ class CoffeeDeskProductDto
     private $pricePromotionalGross;
     private $priceRegularGross;
     private $brand;
+    private $categories;
 
     public function __construct
     (
@@ -24,7 +25,8 @@ class CoffeeDeskProductDto
         ?float $priceIndividualGross,
         ?float $pricePromotionalGross,
         ?float $priceRegularGross,
-        ?string $brand
+        ?string $brand,
+        ?array $categories
     )
     {
         $this->id = $id;
@@ -36,6 +38,7 @@ class CoffeeDeskProductDto
         $this->pricePromotionalGross = $pricePromotionalGross;
         $this->priceRegularGross = $priceRegularGross;
         $this->brand = $brand;
+        $this->categories = $categories;
     }
 
     public function getId(): int
@@ -63,17 +66,17 @@ class CoffeeDeskProductDto
         return $this->stock;
     }
 
-    public function getPriceIndividualGross(): float
+    public function getPriceIndividualGross(): ?float
     {
         return $this->priceIndividualGross;
     }
 
-    public function getPricePromotionalGross(): float
+    public function getPricePromotionalGross(): ?float
     {
         return $this->pricePromotionalGross;
     }
 
-    public function getPriceRegularGross(): float
+    public function getPriceRegularGross(): ?float
     {
         return $this->priceRegularGross;
     }
@@ -81,6 +84,11 @@ class CoffeeDeskProductDto
     public function getBrand(): ?string
     {
         return $this->brand;
+    }
+
+    public function getCategories(): ?array
+    {
+        return $this->categories;
     }
 
     public static function constructFromData(array $record): ?self
@@ -94,7 +102,8 @@ class CoffeeDeskProductDto
             $record['priceIndividualGross'],
             $record['pricePromotionalGross'],
             $record['priceRegularGross'],
-            $record['brand']
+            $record['brand'],
+            $record['categories']
         );
     }
 }

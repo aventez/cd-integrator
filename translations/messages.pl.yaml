@@ -4,6 +4,7 @@ app:
     main: 'Menu zarządzania'
     import: 'Import produktów'
     product: 'Produkty'
+    category: 'Kategorie'
     offer: 'Oferty'
     admin: 'Konta administratorskie'
     actionlog: 'Logi akcji'
@@ -48,14 +49,33 @@ app:
       processing: 'Przetwarzanie'
       completed: 'Powodzenie'
       rejected: 'Niepowodzenie'
+  category:
+    label: 'Kategorie'
+    help: 'W tej sekcji możesz zarządzać automatyzacją przypisywania poszczególnych kategorii do produktów'
+    list:
+      fields:
+        id: 'ID'
+        key: 'Klucz'
+        value: 'Wartość'
+    form:
+      fields:
+        key:
+          label: 'Klucz'
+          help: 'W tym miejscu podaj ID kategorii z CoffeeDesk w formie tekstowej, np. <b>ekspresy</b> lub <b>akcesoria</b>'
+        value:
+          label: 'Wartość'
+          help: 'W tym miejscu podaj identyfikator kategorii ze sklepu w formie numerycznej, np. <b>31</b>'
   product:
     label: 'Zarządzanie produktami'
     help: 'Witaj w sekcji zarządzania produktami. Znajdziesz tutaj wszystkie informacje o dostępnych w systemie produktach. Aby dodać nowy przejdź do sekcji <b>Import produktów</b>.'
     list:
       actions:
         generateOffer: 'Formularz oferty'
+        createOffers: 'Stwórz oferty'
       filters:
-        price: 'Cena'
+        priceRegularGross: 'Cena regularna'
+        priceIndividualGross: 'Cena indywidualna'
+        pricePromotionalGross: 'Cena promocyjna'
         syncDisabled: 'Wyłączona synchronizacja'
       fields:
         id: 'ID'
@@ -64,6 +84,7 @@ app:
         priceIndividualGross: 'Cena (I)'
         pricePromotionalGross: 'Cena (P)'
         priceDiff: 'Zysk (R-I)'
+        stock: 'Realny stan'
         brand: 'Marka'
         name: 'Nazwa'
         lastRefresh: 'Ostatnie odświeżenie'

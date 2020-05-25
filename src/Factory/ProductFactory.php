@@ -27,6 +27,7 @@ class ProductFactory
         $product->setImages($productDto->getImages());
         $product->setBrand($productDto->getBrand());
         $product->setStock($productDto->getStock());
+        $product->setCategories($productDto->getCategories());
 
         $this->repository->save($product);
 
@@ -40,6 +41,7 @@ class ProductFactory
         $product->setPriceRegularGross($productDto->getPriceRegularGross());
         $product->setStock($productDto->getStock());
         $product->setLastRefresh(new \DateTimeImmutable());
+        $product->setCategories($productDto->getCategories());
 
         $this->repository->save($product);
 

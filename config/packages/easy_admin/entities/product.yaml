@@ -10,7 +10,9 @@ easy_admin:
       disabled_actions: ['new']
 
       list:
-        batch_actions: ['delete']
+        batch_actions:
+          - delete
+          - { name: createOffers, ask_confirm: true, label: app.product.list.actions.createOffers }
         actions:
           - { name: generateOffer, label: app.product.list.actions.generateOffer }
 
@@ -25,6 +27,7 @@ easy_admin:
           - { property: coffeeDeskId, label: app.product.list.fields.coffeeDeskId }
           - { property: name, label: app.product.list.fields.name }
           - { property: brand, label: app.product.list.fields.brand }
+          - { property: stock, label: app.product.list.fields.stock }
           - { property: priceRegularGross, format: '%.2f PLN', label: app.product.list.fields.priceRegularGross }
           - { property: priceIndividualGross, format: '%.2f PLN', label: app.product.list.fields.priceIndividualGross }
           - { property: pricePromotionalGross, format: '%.2f PLN', label: app.product.list.fields.pricePromotionalGross }

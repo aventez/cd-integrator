@@ -1,0 +1,20 @@
+easy_admin:
+  entities:
+    Category:
+      label: app.category.label
+      help: app.category.help
+
+      class: App\Entity\Category
+
+      list:
+        batch_actions: ['delete']
+
+        fields:
+          - { property: id, label: app.category.list.fields.id }
+          - { property: categoryKey, label: app.category.list.fields.key }
+          - { property: categoryValue, label: app.category.list.fields.value }
+
+      form:
+        fields:
+          - { property: categoryKey, label: app.category.form.fields.key.label, help: app.category.form.fields.key.help }
+          - { property: categoryValue, label: app.category.form.fields.value.label, help: app.category.form.fields.value.help }
