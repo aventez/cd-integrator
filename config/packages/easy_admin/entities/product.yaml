@@ -10,6 +10,7 @@ easy_admin:
       disabled_actions: ['new']
 
       list:
+        max_results: 100
         batch_actions:
           - delete
           - { name: createOffers, ask_confirm: true, label: app.product.list.actions.createOffers }
