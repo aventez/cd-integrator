@@ -64,6 +64,7 @@ class OfferRefreshHandler implements EnvelopeHandlerInterface
             if($ex->getCode() == 404) {
                 $this->eventDispatcher->dispatch(new WcOfferNotFoundEvent($offer));
             } else {
+                $this->logger->critical(sprintf('An unexpected error occured while trying to fetch an offer. [code:%d] [offer:%d]', $ex->getCode(), $envelope->offerId));
                 return self::REQUEUE;
             }
         }
