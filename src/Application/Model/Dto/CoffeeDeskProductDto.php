@@ -100,7 +100,7 @@ class CoffeeDeskProductDto
             $record['images'],
             $record['availableStock'],
             $record['priceIndividualGross'],
-            $record['pricePromotionalGross'],
+            isset($record['pricePromotionalGross']) ? $record['pricePromotionalGross'] : $record['priceRegularGross'],
             $record['priceRegularGross'],
             $record['brand'],
             $record['categories']

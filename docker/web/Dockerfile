@@ -12,5 +12,4 @@ RUN apt install -y iputils-ping \
     librabbitmq-dev
 
 RUN apt install -y zlib1g-dev chromium
-RUN composer global require hirak/prestissimo
 RUN docker-php-ext-enable amqp

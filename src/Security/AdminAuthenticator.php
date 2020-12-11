@@ -90,7 +90,7 @@ class AdminAuthenticator extends AbstractFormLoginAuthenticator implements Passw
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('integrator_dashboard'));
+        return new RedirectResponse($this->urlGenerator->generate('easyadmin'));
     }
 
     protected function getLoginUrl()
