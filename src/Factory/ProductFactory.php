@@ -27,6 +27,7 @@ class ProductFactory
         $product->setImages($productDto->getImages());
         $product->setBrand($productDto->getBrand());
         $product->setStock($productDto->getStock());
+		$product->setBuffer(-2);
         $product->setCategories($productDto->getCategories());
 
         $this->repository->save($product);

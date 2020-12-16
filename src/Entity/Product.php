@@ -57,9 +57,9 @@ class Product
     private $stock;
 
     /**
-     * @ORM\Column(type="integer", options={"default": 2})
+     * @ORM\Column(type="integer", options={"default": -2})
      */
-    private $buffer = 2;
+    private $buffer = -2;
 
     /**
      * @ORM\Column(type="boolean", options={"default": false})
